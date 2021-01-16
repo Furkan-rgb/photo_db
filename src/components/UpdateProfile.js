@@ -4,7 +4,6 @@ import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from "react-router-dom"
-import useFirestore2 from '../hooks/useFirestore2'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,58 +29,63 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Signup() {
+export default function UpdateProfile() {
     const classes = useStyles()
 
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const displayNameRef = useRef();;
-    const { signup, currentUser } = useAuth();
+    const displayNameRef = useRef();
+    const { currentUser, updatePassword, updateEmail, updateDisplayName } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-    const collectionRef = useFirestore2('accounts');
-
 
 
     //handles the signup
     //function that handles the submit info (email and password) and error handling (see useRef hooks)
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         //preventDefault prevents refreshing
         e.preventDefault()
-
-
         //if both passwords are not the same
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return (
-                setError("Passwords do not match")
-            )
+            return setError("Passwords do not match")
         }
-        // Sign up
-        try {
-            setError("")
-            setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
-                .then(function (result) {
-                    return result.user.updateProfile({
-                        displayName: displayNameRef.current.value
-                    })
-                })
+        //wait untill all promises finish before throwing errors
+        const promises = []
+        setLoading(true)
+        setError("")
 
-            // .then(function (cred) {
-            //     return collectionRef.doc(cred.user.uid).set({
-            //         userID: currentUser.uid
-            //     })
-            // })
-
-            history.push("/")
-
-            // Firebase signup error
-        } catch (error) {
-            setError(error.message);
+        //Update email
+        //if  email is not equal to current email
+        if (emailRef.current.value !== currentUser.email) {
+            //update email with current value
+            promises.push(updateEmail(emailRef.current.value))
         }
-        setLoading(false)
+
+        //Update Username
+        //if  username is not equal to current username
+        if (displayNameRef.current.value !== currentUser.displayName) {
+            //update username with current value
+            promises.push(updateDisplayName(displayNameRef.current.value))
+        }
+
+        //Update password
+        //update password with current value (if there is a value ofcourse)
+        if (passwordRef.current.value) {
+            promises.push(updatePassword(passwordRef.current.value))
+        }
+
+        //if all promises are succsful redirect to homepage
+        Promise.all(promises).then(() => {
+            history.push('/')
+            //catch the error
+        }).catch((error) => {
+            setError(error.message)
+            //setLoading state to false again
+        }).finally(() => {
+            setLoading(false)
+        })
     }
 
     return (
@@ -90,21 +94,24 @@ export default function Signup() {
                 <Card className={classes.card}>
                     <Grid container justify="center" direction="column" alignItems="center" >
                         <Typography align='center' variant="h3" component="h2">
-                            Sign up
+                            Update Profile
                         </Typography>
-                        {/* Errors */}
                         {error && <Alert severity="error">{error}</Alert>}
                         <form onSubmit={handleSubmit} align='center' className={classes.root} >
-                            {/* Username + email */}
+                            {/* Grid item for username and email */}
                             <Grid item>
                                 {/* Username */}
                                 <TextField
                                     className={classes.inputField}
-                                    required
                                     id="display-name"
                                     label="Display Name"
                                     inputRef={displayNameRef}
                                     textalign='center'
+                                    defaultValue={currentUser.displayName}
+                                    placeholder="Leave empty to keep the same"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                 />
                                 {/* Email */}
                                 <TextField
@@ -114,40 +121,47 @@ export default function Signup() {
                                     label="Email"
                                     inputRef={emailRef}
                                     textalign='center'
+                                    defaultValue={currentUser.email}
                                 />
                             </Grid>
                             {/* Password */}
                             <Grid item>
                                 <TextField
                                     className={classes.inputField}
-                                    required
                                     id="password-input"
                                     label="Password"
                                     type="password"
                                     autoComplete="current-password"
                                     inputRef={passwordRef}
+                                    placeholder="Leave empty to keep the same"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                 />
                             </Grid>
                             {/* Password check */}
                             <Grid item>
                                 <TextField
                                     className={classes.inputField}
-                                    required
                                     id="password-confirm"
                                     label="Password-confirm"
                                     type="password"
                                     autoComplete="current-password"
                                     inputRef={passwordConfirmRef}
+                                    placeholder="Leave empty to keep the same"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                 />
                             </Grid>
                             <Button disabled={loading} variant="contained" color="primary" type="submit">
-                                Sign Up
+                                Update
                             </Button>
                         </form>
                     </Grid>
                 </Card>
                 <Typography align='center' variant="subtitle1" component="h2">
-                    Already have an account? <Link to="/login">Log in</Link>
+                    <Link to="/">Cancel</Link>
                 </Typography>
             </Grid>
         </Grid>

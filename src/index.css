@@ -1,0 +1,10 @@
+.progress-bar {
+    height: 5px;
+    background: rgb(214, 162, 113);
+    margin-top: 20px;
+}
+
+.img-item img {
+    width: 100%;
+    max-width: 800px;
+}

@@ -1,5 +1,8 @@
 import firebase from "firebase/app"
+import 'firebase/storage';
+import 'firebase/firestore';
 import "firebase/auth"
+
 //firebase authenticatie verkregen vanuit local env bestand
 const app = firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -10,7 +13,11 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
 })
 
+//storage
+const projectStorage = firebase.storage();
+const projectFirestore = firebase.firestore();
+const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 //authenticatie
 export const auth = app.auth()
 //firebase
-export default app
+export { app, projectFirestore, projectStorage, timestamp };
