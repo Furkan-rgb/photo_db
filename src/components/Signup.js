@@ -75,7 +75,7 @@ export default function Signup() {
             //Set user id
             await accounts.doc(result.user.uid).set({
                 userID: result.user.uid,
-                displayName: result.user.userName
+                userName: result.user.displayName
             });
             history.push("/");
         }
