@@ -4,7 +4,7 @@ import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from "react-router-dom"
-
+import { projectFirestore } from '../firebase'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,7 +40,7 @@ export default function UpdateProfile() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-
+    const accounts = projectFirestore.collection('accounts');
 
     //handles the signup
     //function that handles the submit info (email and password) and error handling (see useRef hooks)
@@ -68,6 +68,10 @@ export default function UpdateProfile() {
         if (displayNameRef.current.value !== currentUser.displayName) {
             //update username with current value
             promises.push(updateDisplayName(displayNameRef.current.value))
+            //update data in account collection
+            promises.push(accounts.doc(currentUser.uid).update({
+                userName: displayNameRef.current.value
+            }));
         }
 
         //Update password
@@ -154,6 +158,7 @@ export default function UpdateProfile() {
                                     }}
                                 />
                             </Grid>
+                            {/* Update button */}
                             <Button disabled={loading} variant="contained" color="primary" type="submit">
                                 Update
                             </Button>
