@@ -180,7 +180,7 @@ export default function Dashboard() {
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
                                             Deleting your account can not be undone.
-                                </DialogContentText>
+                                    </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
                                         <Button onClick={handleClose} color="primary">
