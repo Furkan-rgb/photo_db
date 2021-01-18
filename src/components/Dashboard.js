@@ -127,10 +127,7 @@ export default function Dashboard() {
                             {error && <Alert severity="error">{error}</Alert>}
                             {file && <Alert severity="info">Selected image: {file.name}</Alert>}
                         </Grid>
-
-                        <Grid item>
-                            {file && <ProgressBar align="left" file={file} setFile={setFile} />}
-                        </Grid>
+                        {file && <ProgressBar align="left" file={file} setFile={setFile} />}
 
                         {/* Action buttons container */}
                         <Grid container direction="row">
