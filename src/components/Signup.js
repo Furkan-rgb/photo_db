@@ -4,6 +4,7 @@ import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from "react-router-dom"
+import { projectFirestore } from '../firebase'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +41,7 @@ export default function Signup() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-
+    const accounts = projectFirestore.collection('accounts');
 
 
     //handles the signup
@@ -48,8 +49,7 @@ export default function Signup() {
     async function handleSubmit(e) {
         //preventDefault prevents refreshing
         e.preventDefault()
-
-
+        const result = signup(emailRef.current.value, passwordRef.current.value)
         //if both passwords are not the same
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return (
@@ -60,23 +60,29 @@ export default function Signup() {
         try {
             setError("")
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
-                .then(function (result) {
+            await result
+                //Set displayname
+                //https://medium.com/@doyinolarewaju/firebase-adding-extra-information-to-user-on-sign-up-and-other-tips-4ebe215866e
+                .then((result) => {
                     return result.user.updateProfile({
                         displayName: displayNameRef.current.value
                     })
                 })
+                .then((result) => {
+                    return console.log(result)
+                })
 
-            // .then(function (cred) {
-            //     return collectionRef.doc(cred.user.uid).set({
-            //         userID: currentUser.uid
-            //     })
-            // })
-
+                //Set user id
+                .then((result) => {
+                    return accounts.doc(result.user.uid).set({
+                        userID: result.user.id
+                    });
+                });
             history.push("/")
+        }
 
-            // Firebase signup error
-        } catch (error) {
+        // Firebase signup error
+        catch (error) {
             setError(error.message);
         }
         setLoading(false)

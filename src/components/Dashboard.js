@@ -115,10 +115,8 @@ export default function Dashboard() {
                     <Grid container direction="column" className={classes.internalCardContainer}>
                         {/* User info */}
                         <Grid item align="center">
-                            <Typography align="center" gutterBottom variant="h2">Storygram</Typography>
-                            <Typography>Email: {currentUser.email} </Typography>
-                            <Typography>Username: {currentUser.displayName} </Typography>
-                            <Typography>UserID: {currentUser.uid} </Typography>
+                            <Typography align="center" variant="h2">Storygram</Typography>
+                            <Typography variant="h5">{currentUser.displayName} </Typography>
                         </Grid>
 
                         {/* Information message output */}
@@ -132,7 +130,7 @@ export default function Dashboard() {
                         {/* Action buttons container */}
                         <Grid container direction="row">
                             {/* Upload image */}
-                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                            <Grid item align='center' className={classes.button} xs={6} sm={3}>
                                 <input
                                     accept="image/*"
                                     className={classes.input}
@@ -149,7 +147,7 @@ export default function Dashboard() {
                             </Grid>
 
                             {/* Update profile info */}
-                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                            <Grid item align='center' className={classes.button} xs={6} sm={3}>
                                 <IconButton color="primary" aria-label="account" component={Link} to={"./UpdateProfile"} >
                                     <AccountBox className={classes.icon} />
                                 </IconButton>
@@ -157,7 +155,7 @@ export default function Dashboard() {
                             </Grid>
 
                             {/* Logout button */}
-                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                            <Grid item align='center' className={classes.button} xs={6} sm={3}>
                                 {/* <Button variant="contained" onClick={handleLogout}>Log out</Button> */}
                                 <IconButton color="primary" aria-label="log out" onClick={handleLogout} component="span" >
                                     <ExitToApp className={classes.icon} />
@@ -166,7 +164,7 @@ export default function Dashboard() {
                             </Grid>
 
                             {/* Delete account button */}
-                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                            <Grid item align='center' className={classes.button} xs={6} sm={3}>
                                 <IconButton color="secondary" aria-label="log out" onClick={handleClickOpen} component="span" >
                                     <DeleteForever className={classes.icon} />
                                 </IconButton>
