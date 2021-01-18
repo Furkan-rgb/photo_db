@@ -56,20 +56,6 @@ export default function Signup() {
                 setError("Passwords do not match")
             )
         }
-        // // Sign up
-        // try {
-        //     setError("")
-        //     setLoading(true)
-        //     await signup(emailRef.current.value, passwordRef.current.value)
-        //         //Set displayname
-        //         //https://medium.com/@doyinolarewaju/firebase-adding-extra-information-to-user-on-sign-up-and-other-tips-4ebe215866e
-        //         .then((result) => {
-        //             return result.user.updateProfile({
-        //                 displayName: displayNameRef.current.value
-        //             })
-        //         })
-        //     history.push("/")
-        // }
 
         try {
             setError("");

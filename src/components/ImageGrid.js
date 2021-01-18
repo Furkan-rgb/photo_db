@@ -19,24 +19,7 @@ const ImageGrid = () => {
     //     ))}
     // </Grid>
 
-    // return <Grid container justify="center">
-    //     {docs2.map((user) => (
-    //         <Grid className="img-item" item key={user.userID} xs={12} md={6} lg={4}>
-    //             {docs
-    //                  .filter((image) => image.userID === user.userID)
-    //                  .map((image) => (
-    //                     <img
-    //                         src={image.url}
-    //                         key={`image-${user.userID}`}
-    //                         alt="uploaded pic"
-    //                     />
-    //                 ))}
-    //             <Typography variant="subtitle1"> By {user.userName} </Typography>
-    //         </Grid>
-    //     ))}
-    // </Grid>
-
-    return <Grid container justify="center">
+    return <Grid container justify="center" >
         {/* All images */}
         {docs && docs
             // For every image

@@ -75,6 +75,7 @@ export default function Dashboard() {
         try {
             await deleteAccount()
             history.push('/login')
+
         }
         catch (error) {
             setError(error.message)
