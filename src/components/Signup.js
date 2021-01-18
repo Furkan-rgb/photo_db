@@ -49,36 +49,49 @@ export default function Signup() {
     async function handleSubmit(e) {
         //preventDefault prevents refreshing
         e.preventDefault()
-        const result = signup(emailRef.current.value, passwordRef.current.value)
+
         //if both passwords are not the same
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return (
                 setError("Passwords do not match")
             )
         }
-        // Sign up
-        try {
-            setError("")
-            setLoading(true)
-            await result
-                //Set displayname
-                //https://medium.com/@doyinolarewaju/firebase-adding-extra-information-to-user-on-sign-up-and-other-tips-4ebe215866e
-                .then((result) => {
-                    return result.user.updateProfile({
-                        displayName: displayNameRef.current.value
-                    })
-                })
-                .then((result) => {
-                    return console.log(result)
-                })
+        // // Sign up
+        // try {
+        //     setError("")
+        //     setLoading(true)
+        //     await signup(emailRef.current.value, passwordRef.current.value)
+        //         //Set displayname
+        //         //https://medium.com/@doyinolarewaju/firebase-adding-extra-information-to-user-on-sign-up-and-other-tips-4ebe215866e
+        //         .then((result) => {
+        //             return result.user.updateProfile({
+        //                 displayName: displayNameRef.current.value
+        //             })
+        //         })
+        //     history.push("/")
+        // }
 
-                //Set user id
-                .then((result) => {
-                    return accounts.doc(result.user.uid).set({
-                        userID: result.user.id
-                    });
-                });
-            history.push("/")
+        try {
+            setError("");
+            setLoading(true);
+            const result = await signup(
+                emailRef.current.value,
+                passwordRef.current.value
+            );
+            //Set displayname
+            //https://medium.com/@doyinolarewaju/firebase-adding-extra-information-to-user-on-sign-up-and-other-tips-4ebe215866e
+            await result.user.updateProfile({
+                displayName: displayNameRef.current.value
+            });
+
+            console.log(result);
+
+            //Set user id
+            await accounts.doc(result.user.uid).set({
+                userID: result.user.uid,
+                displayName: result.user.userName
+            });
+            history.push("/");
         }
 
         // Firebase signup error
