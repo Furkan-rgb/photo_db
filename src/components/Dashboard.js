@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Grid, Typography, Card, Button, makeStyles, IconButton } from "@material-ui/core"
-import { PhotoCamera } from '@material-ui/icons'
+import { PhotoCamera, AccountBox, ExitToApp, DeleteForever } from '@material-ui/icons'
 import { Link, useHistory } from "react-router-dom"
 import { Alert } from "@material-ui/lab"
 import { useAuth } from '../contexts/AuthContext'
 import ProgressBar from './ProgressBar'
 import ImageGrid from './ImageGrid'
-import DeleteIcon from '@material-ui/icons/Delete';
 
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
@@ -122,68 +121,81 @@ export default function Dashboard() {
                             <Typography>UserID: {currentUser.uid} </Typography>
                         </Grid>
 
-                        {/* Error and file name message output */}
+                        {/* Information message output */}
                         <Grid item className={classes.info}>
                             {/* If left statement then right statement.. */}
                             {error && <Alert severity="error">{error}</Alert>}
                             {file && <Alert severity="info">Selected image: {file.name}</Alert>}
-                            {file && <ProgressBar file={file} setFile={setFile} />}
                         </Grid>
 
-                        {/* Upload image */}
-                        <Grid item align='center'>
-                            <input
-                                accept="image/*"
-                                className={classes.input}
-                                id="icon-button-file"
-                                type="file"
-                                onChange={changeHandler}
-                            />
-                            <label htmlFor="icon-button-file">
-                                <IconButton color="primary" aria-label="upload picture" component="span" >
-                                    <PhotoCamera className={classes.icon} />
+                        <Grid item>
+                            {file && <ProgressBar align="left" file={file} setFile={setFile} />}
+                        </Grid>
+
+                        {/* Action buttons container */}
+                        <Grid container direction="row">
+                            {/* Upload image */}
+                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                                <input
+                                    accept="image/*"
+                                    className={classes.input}
+                                    id="icon-button-file"
+                                    type="file"
+                                    onChange={changeHandler}
+                                />
+                                <label htmlFor="icon-button-file">
+                                    <IconButton color="primary" aria-label="upload picture" component="span" >
+                                        <PhotoCamera className={classes.icon} />
+                                    </IconButton>
+                                </label>
+                                <Typography>Upload an image</Typography>
+                            </Grid>
+
+                            {/* Update profile info */}
+                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                                <IconButton color="primary" aria-label="account" component={Link} to={"./UpdateProfile"} >
+                                    <AccountBox className={classes.icon} />
                                 </IconButton>
-                            </label>
-                        </Grid>
+                                <Typography>Update account</Typography>
+                            </Grid>
 
-                        {/* Update profile info */}
-                        <Grid item align='center' className={classes.button}>
-                            <Button variant="contained" color="secondary" component={Link} to={"./UpdateProfile"}>
-                                Update
-                            </Button>
-                        </Grid>
+                            {/* Logout button */}
+                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                                {/* <Button variant="contained" onClick={handleLogout}>Log out</Button> */}
+                                <IconButton color="primary" aria-label="log out" onClick={handleLogout} component="span" >
+                                    <ExitToApp className={classes.icon} />
+                                </IconButton>
+                                <Typography>Log out</Typography>
+                            </Grid>
 
-                        {/* Logout button */}
-                        <Grid item align='center' className={classes.button}>
-                            <Button variant="contained" onClick={handleLogout}>Log out</Button>
-                        </Grid>
-
-                        {/* Delete account button */}
-                        <Grid item align='center' className={classes.button}>
-                            <Button variant="outlined" color="primary" onClick={handleClickOpen} startIcon={<DeleteIcon />}>
-                                Delete account
-                            </Button>
-                            <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete your account?"}</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        Deleting your account can not be undone.
+                            {/* Delete account button */}
+                            <Grid item align='center' className={classes.button} xs={12} sm={3}>
+                                <IconButton color="secondary" aria-label="log out" onClick={handleClickOpen} component="span" >
+                                    <DeleteForever className={classes.icon} />
+                                </IconButton>
+                                <Typography>Delete Account</Typography>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete your account?"}</DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            Deleting your account can not be undone.
                                 </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
-                                        Cancel
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleClose} color="primary">
+                                            Cancel
                                     </Button>
-                                    <Button onClick={handleDelete} color="primary" autoFocus>
-                                        Delete
+                                        <Button onClick={handleDelete} color="primary" autoFocus>
+                                            Delete
                                     </Button>
-                                </DialogActions>
-                            </Dialog>
+                                    </DialogActions>
+                                </Dialog>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Card>

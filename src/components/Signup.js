@@ -4,7 +4,6 @@ import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from "react-router-dom"
-import useFirestore2 from '../hooks/useFirestore2'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,11 +36,10 @@ export default function Signup() {
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const displayNameRef = useRef();;
-    const { signup, currentUser } = useAuth();
+    const { signup } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-    const collectionRef = useFirestore2('accounts');
 
 
 
