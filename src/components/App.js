@@ -4,7 +4,8 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+//https://create-react-app.dev/docs/deployment/
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Grid, makeStyles } from '@material-ui/core'
 import PrivateRoute from './privateRoute'
 
@@ -20,7 +21,7 @@ function App() {
   const classes = useStyles()
   return (
     <Grid container className={classes.container}>
-      <Router>
+      <Router basename="/storygram">
         <AuthProvider>
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />

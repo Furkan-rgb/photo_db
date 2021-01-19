@@ -1,6 +1,6 @@
 {
   "name": "photo_db",
-  "homepage": ".",
+  "homepage": "https://i367766.hera.fhict.nl/storygram",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,11 +10,13 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "express": "^4.17.1",
     "firebase": "^8.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-service-worker": "^0.1.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -40,5 +42,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Furkan-rgb/photo_db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Furkan-rgb/photo_db/issues"
   }
 }
