@@ -4,8 +4,11 @@
     margin-top: 20px;
 }
 
+.img-item {
+    width: 100%;
+}
+
 .img-item img {
     width: 100%;
-    /* max-width: 800px; */
-    max-width: 25vw;
+    max-width: 800px;
 }
