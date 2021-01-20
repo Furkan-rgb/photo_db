@@ -6,6 +6,7 @@ import { DeleteForever } from '@material-ui/icons'
 import { projectFirestore } from '../firebase';
 import { useAuth } from '../contexts/AuthContext'
 import { useAlert } from "react-alert";
+// import { projectStorage } from '../firebase'
 
 const ImageGrid = () => {
     const { docs } = useFirestore('images');
@@ -15,20 +16,31 @@ const ImageGrid = () => {
     const alert = useAlert();
 
     //Delete an image. Current user can only delete own images
-    const handleDeleteImage = (value, id) => {
+    const handleDeleteImage = (value, id, url) => {
         if (id === currentUser.uid) {
-            setError('')
+            setError('');
+
+            // projectStorage.getReferenceFromUrl(url).delete()
+            //     .then(function () {
+            //         console.log('storage delete successfull!')
+            //     })
+            //     .catch(function (error) {
+            //         console.error("Error removing document: ", error);
+            //     })
+
             return projectFirestore.collection('images').doc(value).delete()
                 .then(function () {
                     console.log("Document successfully deleted!");
-                }).catch(function (error) {
+                    alert.success("Image deleted succesfully");
+                })
+                .catch(function (error) {
                     console.error("Error removing document: ", error);
                 });
         }
         else {
             setError('That is not your picture!')
             console.log(error)
-            alert.show("You can't delete other user's photos");
+            alert.error("You can't delete other user's photos");
         }
     };
 
@@ -53,7 +65,7 @@ const ImageGrid = () => {
                             <div>
                                 <img src={image.url} alt="uploaded pic" />
                                 <Typography variant="subtitle1"> By {user.userName}
-                                    <IconButton color="secondary" aria-label="delete image" onClick={() => handleDeleteImage(image.id, image.userID)} component="span" >
+                                    <IconButton color="secondary" aria-label="delete image" onClick={() => handleDeleteImage(image.id, image.userID, image.url)} component="span" >
                                         <DeleteForever />
                                     </IconButton>
                                 </Typography>
