@@ -1,9 +1,10 @@
+//This file arranges the connection between the app and firebase
 import firebase from "firebase/app"
 import 'firebase/storage';
 import 'firebase/firestore';
 import "firebase/auth"
 
-//firebase authenticatie verkregen vanuit local env bestand
+//firebase authenticatie obtained from local env file
 const app = firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -19,5 +20,5 @@ const projectFirestore = firebase.firestore();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 //authenticatie
 export const auth = app.auth()
-//firebase
+//firebase exports to use in other components
 export { app, projectFirestore, projectStorage, timestamp };
