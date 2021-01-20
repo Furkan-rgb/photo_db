@@ -92,9 +92,6 @@ I've started this project out of dissatisfaction with the way social media handl
 2. `npm start` To start the project live server
 3. Enjoy tinkering with the project!
 
-## API Reference
-
-
 ## License
 
 Copyright (c) 2021 Furkan-rgb
