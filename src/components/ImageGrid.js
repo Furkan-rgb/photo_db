@@ -10,16 +10,7 @@ const ImageGrid = () => {
 
     console.log(docs2);
 
-    // return <Grid container justify="center">
-    //     {docs && docs.map(doc => (
-    //         <Grid className="img-item" item key={doc.id} xs={12} md={6} lg={4}>
-    //             <img src={doc.url} alt="uploaded pic" />
-    //             <Typography variant="subtitle1"> By {doc.userID} </Typography>
-    //         </Grid>
-    //     ))}
-    // </Grid>
-
-    return <Grid container justify="center" >
+    return <Grid container justify="center" spacing={2}>
         {/* All images */}
         {docs && docs
             // For every image

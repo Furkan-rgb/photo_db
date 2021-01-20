@@ -6,7 +6,6 @@ import { Alert } from "@material-ui/lab"
 import { useAuth } from '../contexts/AuthContext'
 import ProgressBar from './ProgressBar'
 import ImageGrid from './ImageGrid'
-
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -106,11 +105,9 @@ export default function Dashboard() {
 
     return (
         // Main container with (Profile info and upload card) and (Image grid)
-        // <Grid container justify="center" direction="column" alignItems="flex-start" className={classes.mainContainer}>
         <Grid container justify="center">
 
             {/* Profile + upload card container */}
-            {/* <Grid container item xs={12} sm={8} justify="center" direction="column" alignItems="flex-start"> */}
             <Grid item xs={12} sm={8} align="center">
                 <Card className={classes.card} align="center">
                     <Grid container direction="column" className={classes.internalCardContainer}>
@@ -157,7 +154,6 @@ export default function Dashboard() {
 
                             {/* Logout button */}
                             <Grid item align='center' className={classes.button} xs={6} sm={3}>
-                                {/* <Button variant="contained" onClick={handleLogout}>Log out</Button> */}
                                 <IconButton color="primary" aria-label="log out" onClick={handleLogout} component="span" >
                                     <ExitToApp className={classes.icon} />
                                 </IconButton>
