@@ -28,20 +28,65 @@ I've started this project out of dissatisfaction with the way social media handl
 <p>Storygram is a PWA which means it can also be added on mobile devices.</p>
 
 ## Code Example
+### The Grid
 <a href="https://material-ui.com/components/grid/">Grid container<a> which centers all grid items inside.<br>
 `<Grid container justify="center" >` <br><br>
 <a href="https://material-ui.com/components/grid/">Grid item<a> Grid item with breakpoints for small, medium and large screens.<br> 
 `<Grid item xs={12} md={6} lg={4}>` <br>
   
-  <p> <a href="https://reactrouter.com/web/guides/quick-start">Switch component inside routing</a> to load up components and link to correct pages </p>
+ ### Routing
+  <p> <a href="https://reactrouter.com/web/guides/quick-start">Switch component inside routing</a> to load up components and link to correct pages at App.js </p>
   
-``` 
+```JSX
 <Router basename="/storygram">
   <Switch>
     <Route path="/signup" component={Signup} />
   </Switch>
 </Router>
 ```
+### Image Grid
+<p> You can Adjust the following values to alter the way the image grid is displayed at <a href="https://github.com/Furkan-rgb/photo_db/blob/main/src/components/ImageGrid.js">ImageGrid.js</a> </p>
+  
+```JSX    
+  return <Grid container justify="center" >
+        {/* All images */}
+        {docs && docs
+            // For every image
+            .map(image => (
+                // In a grid item
+                <Grid className="img-item" item key={image.id} xs={12} md={6} lg={4}>
+                    {/* all accounts */}
+                    {docs2 && docs2
+                        // For every single image:
+                        // Filter statament only contains the user of specific image
+                        // https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
+                        .filter((user) => image.userID === user.userID)
+                        //Now you have the user that belongs to the image.ID
+                        .map(user => (
+                            <div>
+                                <img src={image.url} alt="uploaded pic" />
+                                <Typography variant="subtitle1"> By {user.userName} </Typography>
+                            </div>
+                        ))}
+
+                </Grid>
+            ))}
+    </Grid>
+```
+### Authentication
+<p> At <a href="https://github.com/Furkan-rgb/photo_db/blob/main/src/contexts/AuthContext.js"> authcontext.js </a> you can see all the available database functions for the current logged in user.
+  
+  ```JSX
+      //create user
+    function signup(email, password) {
+        return auth.createUserWithEmailAndPassword(email, password)
+    }
+    //login function
+    function login(email, password) {
+        return auth.signInWithEmailAndPassword(email, password)
+    }
+```
+    
 ## Installation
 1. Navigate to the root folder of the project.
 2. `npm start` To start the project live server
