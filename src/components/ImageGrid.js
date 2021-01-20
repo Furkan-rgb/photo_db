@@ -30,7 +30,7 @@ const ImageGrid = () => {
                     {docs2 && docs2
                         // For every single image:
                         // Filter statament only contains the user of specific image
-                        //https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
+                        // https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
                         .filter((user) => image.userID === user.userID)
                         //Now you have the user that belongs to the image.ID
                         .map(user => (
