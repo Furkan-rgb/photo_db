@@ -15,7 +15,7 @@ I've started this project out of dissatisfaction with the way social media handl
 
 #### Dashboard
 <a href="url"><img src="https://i.imgur.com/S3P16aH.png" height="300"></a> <br>
-![Storygram demo gif]<img src="http://i.imgur.com/mTkKoAbh.gif" height="300">
+<a href="url"><img src="http://i.imgur.com/mTkKoAbh.gif" height="300"></a>
 
 ## Tech/framework used
 **Built with**
