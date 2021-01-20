@@ -9,11 +9,9 @@ I've started this project out of dissatisfaction with the way social media handl
 #### Logo
 <a href="url"><img src="https://i.imgur.com/fdBvgyZ.png" height="200" align="center"></a> <br>
 
-#### Login & Update credentials
+#### Login, Update credentials & Dashboard
 <a href="url"><img src="https://i.imgur.com/lHefmUK.png" height="300"></a>
 <a href="url"><img src="https://i.imgur.com/LrZR8Ev.png" height="300"></a>
-
-#### Dashboard
 <img src="https://user-images.githubusercontent.com/50831308/105186925-8141d600-5b32-11eb-8cd0-f35fa36b8011.gif" width="300" />
 
 ## Tech/framework used
