@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Storygram
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Storygram is a place where photography enthusiasts can share their photos. It's about the admiration of one's work without the heavy emphasis on the social media aspect of it. 
 
-## Available Scripts
+## Motivation
+I've started this project out of dissatisfaction with the way social media handles photography. Too much of it is about likes, comments and followers. The art of photography gets lost in a sea of empty photos shared by millions.
 
-In the project directory, you can run:
+## Storygram Visuals
+#### Logo
+<a href="url"><img src="https://i.imgur.com/fdBvgyZ.png" height="200" align="center"></a> <br>
 
-### `npm start`
+#### Login & Update credentials
+<a href="url"><img src="https://i.imgur.com/lHefmUK.png" height="300"></a>
+<a href="url"><img src="https://i.imgur.com/LrZR8Ev.png" height="300"></a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Dashboard
+<a href="url"><img src="https://i.imgur.com/S3P16aH.png" height="300"></a> <br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech/framework used
+**Built with**
+- <a href="https://create-react-app.dev/docs/getting-started/">Reactjs</a>
+- <a href="https://material-ui.com/getting-started/installation/">Material UI</a>
+- <a href="https://firebase.google.com/docs/web/setup">Firebase</a>
 
-### `npm test`
+## Features
+<p>In Storygram you've got complete control over how to display the uploaded user images through the Material UI grid system. <br>In the future, clicking on an image will load a dedicated story page of that specific image. Browsing through photos will be an experience instead of an overload of visual stimuli.</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p>Storygram is a PWA which means it can also be added on mobile devices.</p>
 
-### `npm run build`
+## Code Example
+<a href="https://material-ui.com/components/grid/">Grid container<a> which centers all grid items inside.<br>
+`<Grid container justify="center" >` <br><br>
+<a href="https://material-ui.com/components/grid/">Grid item<a> Grid item with breakpoints for small, medium and large screens.<br> 
+`<Grid item xs={12} md={6} lg={4}>` <br>
+  
+  <p> <a href="https://reactrouter.com/web/guides/quick-start">Switch component inside routing</a> to load up components and link to correct pages </p>
+  
+``` 
+<Router basename="/storygram">
+  <Switch>
+    <Route path="/signup" component={Signup} />
+  </Switch>
+</Router>
+```
+## Installation
+1. Navigate to the root folder of the project.
+2. `npm start` To start the project live server
+3. Enjoy tinkering with the project!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API Reference
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
+Copyright (c) 2021 Furkan-rgb
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
