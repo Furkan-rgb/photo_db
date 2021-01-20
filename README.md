@@ -14,8 +14,7 @@ I've started this project out of dissatisfaction with the way social media handl
 <a href="url"><img src="https://i.imgur.com/LrZR8Ev.png" height="300"></a>
 
 #### Dashboard
-<a href="url"><img src="https://i.imgur.com/S3P16aH.png" height="300"></a> <br>
-<a href="url"><img src="http://i.imgur.com/mTkKoAbh.gif" height="300"></a>
+![Dashboard-demo](https://user-images.githubusercontent.com/50831308/105186925-8141d600-5b32-11eb-8cd0-f35fa36b8011.gif)
 
 ## Tech/framework used
 **Built with**
