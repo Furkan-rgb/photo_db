@@ -31,7 +31,7 @@ I've started this project out of dissatisfaction with the way social media handl
 ### The Grid
 <a href="https://material-ui.com/components/grid/">Grid container<a> which centers all grid items inside.<br>
 `<Grid container justify="center" >` <br><br>
-<a href="https://material-ui.com/components/grid/">Grid item<a> Grid item with breakpoints for small, medium and large screens.<br> 
+<a href="https://material-ui.com/components/grid/">Grid item<a> with breakpoints for small, medium and large screens.<br> 
 `<Grid item xs={12} md={6} lg={4}>` <br>
   
  ### Routing
