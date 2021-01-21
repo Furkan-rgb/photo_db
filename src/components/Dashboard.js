@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 import ProgressBar from './ProgressBar'
 import ImageGrid from './ImageGrid'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { useAlert } from "react-alert";
 
 const useStyles = makeStyles((theme) => ({
     internalCardContainer: {
@@ -44,7 +45,7 @@ export default function Dashboard() {
     const [error, setError] = useState("")
     const history = useHistory()
     const { currentUser, logout, deleteAccount } = useAuth()
-
+    const alert = useAlert();
     // Dialog box 
     const [open, setOpen] = React.useState(false);
 
@@ -96,6 +97,7 @@ export default function Dashboard() {
             //store the file
             setFile(selected);
             setError('');
+            alert.success("Image succesfully uploaded");
         }
         else {
             setFile(null);
@@ -123,7 +125,7 @@ export default function Dashboard() {
                             {error && <Alert severity="error">{error}</Alert>}
                             {file && <Alert severity="info">Selected image: {file.name}</Alert>}
                         </Grid>
-                        {file && <ProgressBar align="left" file={file} setFile={setFile} />}
+                        {file && <ProgressBar file={file} setFile={setFile} />}
 
                         {/* Action buttons container */}
                         <Grid container direction="row">

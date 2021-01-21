@@ -31,7 +31,8 @@ const useStorage = (file) => {
         }, async () => {
             const url = await storageRef.getDownloadURL();
             const createdAt = timestamp();
-            collectionRef.add({ url, createdAt, userID: currentUser.uid })
+            const name = file.name;
+            collectionRef.add({ url, createdAt, userID: currentUser.uid, name })
             setUrl(url);
         })
     }, [file, currentUser]) //everytime file changes this effect will fire
