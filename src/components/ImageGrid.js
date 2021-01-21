@@ -60,7 +60,7 @@ const ImageGrid = () => {
 
     console.log(docs);
 
-    return <Grid container justify="center" spacing={2}>
+    return <Grid container alignItems="flex-start" justify="center" className="img-container" spacing={2}>
         {/* All images */}
         {docs && docs
             // For every image
@@ -75,7 +75,7 @@ const ImageGrid = () => {
                         .filter((user) => image.userID === user.userID)
                         //Now you have the user that belongs to the image.ID
                         .map(user => (
-                            <div key={image.id}>
+                            <div key={image.id} className="div">
                                 <img src={image.url} alt="uploaded pic" />
                                 <Typography variant="subtitle1"> By {user.userName}
 
