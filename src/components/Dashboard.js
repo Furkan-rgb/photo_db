@@ -125,7 +125,7 @@ export default function Dashboard() {
                             {error && <Alert severity="error">{error}</Alert>}
                             {file && <Alert severity="info">Selected image: {file.name}</Alert>}
                         </Grid>
-                        {file && <ProgressBar file={file} setFile={setFile} />}
+                        {file && <ProgressBar align="left" file={file} setFile={setFile} />}
 
                         {/* Action buttons container */}
                         <Grid container direction="row">

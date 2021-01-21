@@ -18,7 +18,7 @@ const ImageGrid = () => {
     // Disable value in button
     // Returns false for the disable button if the current user wants to delete own pic
     const handleButton = (imageId) => {
-        if (imageId === currentUser.uid) {
+        if (imageId !== currentUser.uid) {
             return false;
         }
         else {
@@ -79,20 +79,15 @@ const ImageGrid = () => {
                                 <img src={image.url} alt="uploaded pic" />
                                 <Typography variant="subtitle1"> By {user.userName}
 
-                                    {/* How do implement this if statement for the IconButton? */}
-                                    {/* if ({handleButton(image.userID)} === false){
-                                        return 
-                                    } */}
-
                                     {/* Delete button */}
-                                    <IconButton
-                                        disabled={handleButton(image.userID)}
-                                        color="secondary" aria-label="delete image"
-                                        onClick={() => handleDeleteImage(image.id, image.userID, image.name)}
-                                        component="span" >
-                                        <DeleteForever />
-                                    </IconButton>
-
+                                    {/* If the image is of the user then a delete button will render */}
+                                    {handleButton(image.userID) &&
+                                        <IconButton
+                                            color="secondary" aria-label="delete image"
+                                            onClick={() => handleDeleteImage(image.id, image.userID, image.name)}
+                                            component="span" >
+                                            <DeleteForever />
+                                        </IconButton>}
                                 </Typography>
                             </div>
                         ))}
