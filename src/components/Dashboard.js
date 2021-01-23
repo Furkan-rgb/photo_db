@@ -92,6 +92,7 @@ export default function Dashboard() {
     //selected image
     const changeHandler = (e) => {
         let selected = e.target.files[0];
+        console.log(selected)
         //Check if a file is selected
         if (selected && types.includes(selected.type)) {
             //store the file
@@ -197,7 +198,7 @@ export default function Dashboard() {
             {/* </Grid> */}
 
             {/* Image grid imported from ImageGrid.js*/}
-            <Grid item align="center">
+            <Grid item xs={12} align="center">
                 <ImageGrid />
             </Grid>
 
