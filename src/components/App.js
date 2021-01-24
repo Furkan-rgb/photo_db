@@ -14,24 +14,30 @@ const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '100vh',
     width: '100%',
+    maxWidth: 1920,
   },
+  mainContainer: {
+    width: '100%',
+  }
 }));
 
 function App() {
   const classes = useStyles()
   return (
-    <Grid container className={classes.container}>
-      <Router basename="/storygram">
-        <AuthProvider>
-          <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute exact path="/UpdateProfile" component={UpdateProfile} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/forgot-password" component={ForgotPassword} />
-          </Switch>
-        </AuthProvider>
-      </Router>
+    <Grid container className={classes.mainContainer} justify="center">
+      <Grid container item justify="center" className={classes.container} align='center'>
+        <Router basename="/storygram">
+          <AuthProvider>
+            <Switch>
+              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/UpdateProfile" component={UpdateProfile} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+            </Switch>
+          </AuthProvider>
+        </Router>
+      </Grid>
     </Grid>
   )
 }

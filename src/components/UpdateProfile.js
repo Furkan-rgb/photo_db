@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { TextField, Card, Button, Grid, Typography } from '@material-ui/core';
+import { TextField, Card, Button, Grid, Typography, DialogActions, Dialog, DialogTitle, DialogContentText, DialogContent } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
@@ -36,11 +36,35 @@ export default function UpdateProfile() {
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const displayNameRef = useRef();
-    const { currentUser, updatePassword, updateEmail, updateDisplayName } = useAuth();
+    const { currentUser, updatePassword, updateEmail, updateDisplayName, deleteAccount } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
     const accounts = projectFirestore.collection('accounts');
+
+    //Delete account handler (todo: need to delete all images still)
+    async function handleDelete() {
+        setError('')
+        try {
+            await deleteAccount()
+            history.push('/login')
+
+        }
+        catch (error) {
+            setError(error.message)
+        }
+
+    }
+    // Dialog box 
+    const [dialog, setOpenDialog] = React.useState(false);
+
+    const openDialog = () => {
+        setOpenDialog(true);
+    };
+
+    const closeDialog = () => {
+        setOpenDialog(false);
+    };
 
     //handles the signup
     //function that handles the submit info (email and password) and error handling (see useRef hooks)
@@ -163,11 +187,39 @@ export default function UpdateProfile() {
                                 Update
                             </Button>
                         </form>
+
+                        {/* Delete account button */}
+                        <Grid item align='center' className={classes.button} xs={6} sm={3}>
+                            <Button onClick={openDialog} align='center' variant="contained" color="secondary" component="h2">Delete Account</Button>
+                            <Dialog
+                                open={dialog}
+                                onClose={closeDialog}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete your account?"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        Deleting your account can not be undone.
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={closeDialog} color="primary">
+                                        Cancel
+                                    </Button>
+                                    <Button onClick={handleDelete} color="primary" autoFocus>
+                                        Delete
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </Grid>
+
                     </Grid>
                 </Card>
                 <Typography align='center' variant="subtitle1" component="h2">
                     <Link to="/">Cancel</Link>
                 </Typography>
+
             </Grid>
         </Grid>
     )
