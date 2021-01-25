@@ -6,6 +6,21 @@ import * as serviceWorker from './serviceWorker';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import teal from '@material-ui/core/colors/teal';
+import orange from '@material-ui/core/colors/orange';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: teal,
+    secondary: orange,
+  },
+  typography: {
+    useNextVariants: true
+  }
+});
+
+// Alert
 // optional configuration
 const options = {
   // you can also just use 'bottom center'
@@ -20,7 +35,9 @@ const options = {
 ReactDOM.render(
   <React.StrictMode>
     <AlertProvider template={AlertTemplate} {...options}>
-      <App />
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>,
     </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')
