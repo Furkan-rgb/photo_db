@@ -8,6 +8,7 @@ import ProgressBar from './ProgressBar'
 import ImageGrid from './ImageGrid'
 import { useAlert } from "react-alert";
 
+import { green } from '@material-ui/core/colors';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
@@ -71,6 +72,13 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+    },
+    fabProgress: {
+        color: green[500],
+        position: 'absolute',
+        top: -6,
+        left: -6,
+        zIndex: 1,
     },
 }));
 
@@ -145,12 +153,21 @@ export default function Dashboard() {
             <Hidden smUp>
                 <AppBar position="fixed" color="primary" className={classes.xsAppBar}>
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="open drawer">
-                            <MenuIcon />
-                        </IconButton>
-                        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-                            <AddIcon />
-                        </Fab>
+
+                        <input
+                            accept="image/*"
+                            className={classes.input}
+                            id="icon-button-file"
+                            type="file"
+                            onChange={changeHandler}
+                        />
+                        <label htmlFor="icon-button-file">
+                            <Fab color="secondary" aria-label="add" className={classes.fabButton} component="span">
+                                <AddIcon />
+                            </Fab>
+                        </label>
+                        {file && <ProgressBar file={file} setFile={setFile} />}
+
                         <div className={classes.grow} />
                         <IconButton color="inherit">
                             <SearchIcon />
@@ -178,12 +195,12 @@ export default function Dashboard() {
                             {error && <Alert severity="error">{error}</Alert>}
                             {file && <Alert severity="info">Selected image: {file.name}</Alert>}
                         </Grid>
-                        {file && <ProgressBar align="left" file={file} setFile={setFile} />}
+                        {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
 
                         {/* Action buttons container */}
                         <Grid container direction="row">
                             {/* Upload image */}
-                            <Grid item align='center' className={classes.button} xs={4}>
+                            <Grid item align='center' className={classes.button} xs={6}>
                                 <input
                                     accept="image/*"
                                     className={classes.input}
@@ -200,20 +217,13 @@ export default function Dashboard() {
                             </Grid>
 
                             {/* Update profile info */}
-                            <Grid item align='center' className={classes.button} xs={4}>
+                            <Grid item align='center' className={classes.button} xs={6}>
                                 <IconButton color="primary" aria-label="account" component={Link} to={"./UpdateProfile"} >
                                     <AccountBox className={classes.icon} />
                                 </IconButton>
                                 <Typography>Update account</Typography>
                             </Grid>
 
-                            {/* Logout button */}
-                            <Grid item align='center' className={classes.button} xs={4}>
-                                <IconButton color="primary" aria-label="log out" onClick={handleLogout} component="span" >
-                                    <ExitToApp className={classes.icon} />
-                                </IconButton>
-                                <Typography>Log out</Typography>
-                            </Grid>
                         </Grid>
                     </Grid>
                 </Card>
