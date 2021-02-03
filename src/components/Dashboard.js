@@ -199,26 +199,27 @@ export default function Dashboard() {
             </Hidden>
 
             {/* Title container */}
-            <Grid item xs={12} sm={8} align="center">
-                <Card className={classes.card} align="center">
-                    <Grid container direction="column" className={classes.internalCardContainer}>
-                        {/* User info */}
-                        <Grid item align="center">
-                            <Typography align="center" variant="h2">Storygram</Typography>
-                        </Grid>
+            <Hidden smUp>
+                <Grid item xs={12} sm={8} align="center">
+                    <Card className={classes.card} align="center">
+                        <Grid container direction="column" className={classes.internalCardContainer}>
+                            {/* User info */}
+                            <Grid item align="center">
+                                <Typography align="center" variant="h2">Storygram</Typography>
+                            </Grid>
 
-                        {/* Information message output */}
-                        <Grid item className={classes.info}>
-                            {/* If left statement then right statement.. */}
-                            {error && <Alert severity="error">{error}</Alert>}
-                            {file && <Alert severity="info">Selected image: {file.name}</Alert>}
-                        </Grid>
-                        {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
+                            {/* Information message output */}
+                            <Grid item className={classes.info}>
+                                {/* If left statement then right statement.. */}
+                                {error && <Alert severity="error">{error}</Alert>}
+                                {file && <Alert severity="info">Selected image: {file.name}</Alert>}
+                            </Grid>
+                            {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
 
-                    </Grid>
-                </Card>
-            </Grid>
-            {/* </Grid> */}
+                        </Grid>
+                    </Card>
+                </Grid>
+            </Hidden>
 
             {/* Image grid imported from ImageGrid.js*/}
             <Grid item xs={12} align="center">
