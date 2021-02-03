@@ -12,8 +12,11 @@ import { green } from '@material-ui/core/colors';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
+import CameraIcon from '@material-ui/icons/Camera';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -139,10 +142,26 @@ export default function Dashboard() {
                 <AppBar position="static">
                     <Toolbar>
 
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <MenuIcon />
+                        {/* Camera */}
+                        <input
+                            accept="image/*"
+                            className={classes.input}
+                            id="icon-button-file"
+                            type="file"
+                            onChange={changeHandler}
+                        />
+                        <label htmlFor="icon-button-file">
+                            <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="uploadPhoto" component="span">
+                                <AddAPhotoIcon />
+                            </IconButton>
+                        </label>
+
+                        {/* Account  */}
+                        <IconButton component={Link} to={"./UpdateProfile"} edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <AccountCircle />
                         </IconButton>
 
+                        <Typography variant="h1" className={classes.title}>Storygram</Typography>
                         <Typography variant="h6" className={classes.title}>{currentUser.displayName}</Typography>
                         <Button color="inherit" onClick={handleLogout}>Logout</Button>
                     </Toolbar>
@@ -153,7 +172,7 @@ export default function Dashboard() {
             <Hidden smUp>
                 <AppBar position="fixed" color="primary" className={classes.xsAppBar}>
                     <Toolbar>
-
+                        <Typography>{currentUser.displayName}</Typography>
                         <input
                             accept="image/*"
                             className={classes.input}
@@ -163,30 +182,29 @@ export default function Dashboard() {
                         />
                         <label htmlFor="icon-button-file">
                             <Fab color="secondary" aria-label="add" className={classes.fabButton} component="span">
-                                <AddIcon />
+                                <CameraIcon />
                             </Fab>
                         </label>
                         {file && <ProgressBar file={file} setFile={setFile} />}
 
                         <div className={classes.grow} />
-                        <IconButton color="inherit">
-                            <SearchIcon />
+                        <IconButton component={Link} to={"./UpdateProfile"} edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <AccountCircle />
                         </IconButton>
-                        <IconButton edge="end" color="inherit">
-                            <MoreIcon />
+                        <IconButton edge="end" color="inherit" onClick={handleLogout}>
+                            <ExitToAppIcon />
                         </IconButton>
                     </Toolbar>
                 </AppBar>
             </Hidden>
 
-            {/* Profile + upload card container */}
+            {/* Title container */}
             <Grid item xs={12} sm={8} align="center">
                 <Card className={classes.card} align="center">
                     <Grid container direction="column" className={classes.internalCardContainer}>
                         {/* User info */}
                         <Grid item align="center">
                             <Typography align="center" variant="h2">Storygram</Typography>
-                            <Typography variant="h5">{currentUser.displayName} </Typography>
                         </Grid>
 
                         {/* Information message output */}
@@ -197,34 +215,6 @@ export default function Dashboard() {
                         </Grid>
                         {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
 
-                        {/* Action buttons container */}
-                        <Grid container direction="row">
-                            {/* Upload image */}
-                            <Grid item align='center' className={classes.button} xs={6}>
-                                <input
-                                    accept="image/*"
-                                    className={classes.input}
-                                    id="icon-button-file"
-                                    type="file"
-                                    onChange={changeHandler}
-                                />
-                                <label htmlFor="icon-button-file">
-                                    <IconButton color="primary" aria-label="upload picture" component="span" >
-                                        <PhotoCamera className={classes.icon} />
-                                    </IconButton>
-                                </label>
-                                <Typography>Upload an image</Typography>
-                            </Grid>
-
-                            {/* Update profile info */}
-                            <Grid item align='center' className={classes.button} xs={6}>
-                                <IconButton color="primary" aria-label="account" component={Link} to={"./UpdateProfile"} >
-                                    <AccountBox className={classes.icon} />
-                                </IconButton>
-                                <Typography>Update account</Typography>
-                            </Grid>
-
-                        </Grid>
                     </Grid>
                 </Card>
             </Grid>

@@ -16,7 +16,13 @@ const theme = createMuiTheme({
     secondary: orange,
   },
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+
+    h1: {
+      fontFamily: "'Big Shoulders Display', 'cursive'",
+      fontSize: '3rem',
+    }
+
   }
 });
 
